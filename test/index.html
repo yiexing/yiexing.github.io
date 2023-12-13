@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../dist/gm-auth-plugin.js"></script>
+</head>
+<body>
+<script>
+  console.log('GmAuthPlugin', GmAuthPlugin);
+  GmAuthPlugin.isPluginInstalled(function (res) {
+      console.log('插件检测结果：', res);
+      if (res.code != 0) {
+          alert('插件检测失败，更多错误信息请查看控制台！');
+          return;
+      }
+      GmAuthPlugin.enumKeys(3, function (userData) {
+          console.log('枚举key结果：', userData);
+          if (userData.code != 0) {
+              alert('枚举key失败，更多错误信息请查看控制台！');
+              return;
+          }
+          var userList = userData.data;
+          // GmAuthPlugin.GMLoginSignData(userList[0], '12345678', 'sMUrV51WVcCenFGLUdM5gYlmmpKKQ5yhKBjyDs0jA5Y=') // sm2
+          GmAuthPlugin.GMLoginSignData(userList[0].cn, '123456', 'sMUrV51WVcCenFGLUdM5gYlmmpKKQ5yhKBjyDs0jA5Y=', 'http://www.aa.com', function (signRes) {
+              console.log('获取签名值结果：', signRes);
+              if (signRes.code != 0) {
+                  alert('获取签名值失败，更多错误信息请查看控制台！');
+                  return;
+              }
+          });
+      });
+  });
+</script>
+</body>
+</html>
