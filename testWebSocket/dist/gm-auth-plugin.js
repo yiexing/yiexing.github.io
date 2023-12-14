@@ -9680,15 +9680,15 @@
         function l(t) {
           (t && "object" === i(t)) || (t = {});
           var n = "127.0.0.1",
-            e = ["10022", "10024"],
-            r = ["10021", "10025"],
+            e = ["10021", "10024"],
+            r = ["10022", "10025"],
             o = "://",
             u = (this.getConnectionUrls = function (t) {
               return (
                 t ? t >= e.length && (t = e.length - 1) : (t = 0),
                 {
-                  wsUrl: ["wss", o, n, ":", e[t]].join(""),
-                  wssUrl: ["ws", o, n, ":", r[t]].join(""),
+                  wsUrl: ["ws", o, n, ":", e[t]].join(""),
+                  wssUrl: ["wss", o, n, ":", r[t]].join(""),
                   httpUrl: ["http", o, n, ":", e[t], "/websocket"].join(""),
                   httpsUrl: ["https", o, n, ":", r[t], "/websocket"].join(""),
                 }
